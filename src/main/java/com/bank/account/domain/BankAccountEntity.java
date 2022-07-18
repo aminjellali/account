@@ -2,12 +2,14 @@ package com.bank.account.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
-import org.springframework.data.annotation.Id;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,7 +26,8 @@ public class BankAccountEntity {
 	private int id;
 	private String userName;
 	private double balanace;
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name ="account_id")
 	private List<Operation> operations;
 	
 }
