@@ -1,11 +1,10 @@
 package com.bank.account.domain;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.OneToMany;
 
 import org.springframework.data.annotation.Id;
 
@@ -17,14 +16,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BankAccountEntity {
-
+public class Operation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String userName;
-	private double balanace;
-	@OneToMany
-	private List<Operation> operations;
-	
+	private Double impactOnAccount;
+	private LocalDateTime time;
 }
