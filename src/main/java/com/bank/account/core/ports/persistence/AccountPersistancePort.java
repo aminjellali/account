@@ -8,6 +8,6 @@ public interface AccountPersistancePort {
 	
 	Optional<Account> getAccountById(int id);
 	
-	void perisitAccount(Account account);
+	Account perisitAccount(Account account);
 
 }

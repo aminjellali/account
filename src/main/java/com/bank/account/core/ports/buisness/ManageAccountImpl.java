@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bank.account.core.exceptions.AccountNotFoundException;
-import com.bank.account.core.exceptions.OperationDenied;
+import com.bank.account.core.exceptions.OperationDeniedException;
 import com.bank.account.core.models.Account;
 import com.bank.account.core.models.Operation;
 import com.bank.account.core.models.OperationTypeEnum;
@@ -28,7 +28,7 @@ public class ManageAccountImpl implements ManageAccount {
 	}
 
 	@Override
-	public void depositMoneyToAccount(int accountID, Double ammount) throws OperationDenied, AccountNotFoundException {
+	public Account depositMoneyToAccount(int accountID, Double ammount) throws OperationDeniedException, AccountNotFoundException {
 		Optional<Account> account = peristrancePort.getAccountById(accountID);
 		if (!account.isPresent()) {
 			throw new AccountNotFoundException(MessageFormat.format(ACCOUNT_NOT_FOUND_ERROR_TEMPLATE, accountID));
@@ -37,16 +37,16 @@ public class ManageAccountImpl implements ManageAccount {
 			account.get().getOperations().add(Operation.builder().impactOnAccount(ammount)
 					.operationType(OperationTypeEnum.DEPOSIT).time(LocalDateTime.now()).build());
 			account.get().setBalanace(account.get().getBalanace() + ammount);
-			peristrancePort.perisitAccount(account.get());
+			return peristrancePort.perisitAccount(account.get());
 		} else {
-			throw new OperationDenied("Either ammount is null or less or equal to zero, depoit denied.");
+			throw new OperationDeniedException("Either ammount is null or less or equal to zero, depoit denied.");
 		}
 
 	}
 
 	@Override
-	public void withdrawMoneyMoneyToAccount(int accountID, Double ammount)
-			throws OperationDenied, AccountNotFoundException {
+	public Account withdrawMoneyMoneyToAccount(int accountID, Double ammount)
+			throws OperationDeniedException, AccountNotFoundException {
 		Optional<Account> account = peristrancePort.getAccountById(accountID);
 		if (!account.isPresent()) {
 			throw new AccountNotFoundException(MessageFormat.format(ACCOUNT_NOT_FOUND_ERROR_TEMPLATE, accountID));
@@ -55,9 +55,9 @@ public class ManageAccountImpl implements ManageAccount {
 			account.get().getOperations().add(Operation.builder().impactOnAccount(ammount)
 					.operationType(OperationTypeEnum.WITHDRAW).time(LocalDateTime.now()).build());
 			account.get().setBalanace(account.get().getBalanace() - ammount);
-			peristrancePort.perisitAccount(account.get());
+			return peristrancePort.perisitAccount(account.get());
 		} else {
-			throw new OperationDenied(
+			throw new OperationDeniedException(
 					"Either ammount is null ,less or equal to zero or balance not enough, withdraw denied.");
 		}
 

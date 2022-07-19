@@ -9,9 +9,8 @@ import com.bank.account.core.ports.persistence.AccountPersistancePort;
 import com.bank.account.dto.MapperUtilClass;
 
 @Service
-public class AccountPersistancePortImpl implements AccountPersistancePort{
+public class AccountPersistancePortImpl implements AccountPersistancePort {
 	private final AccountEntityRepository accountRepo;
-	
 
 	public AccountPersistancePortImpl(AccountEntityRepository accountRepo) {
 		this.accountRepo = accountRepo;
@@ -20,18 +19,17 @@ public class AccountPersistancePortImpl implements AccountPersistancePort{
 	@Override
 	public Optional<Account> getAccountById(int id) {
 		Optional<AccountEntity> entity = accountRepo.findById(id);
-		if(entity.isEmpty()) {
+		if (entity.isEmpty()) {
 			return Optional.empty();
 		}
 		return Optional.of(MapperUtilClass.EntityToAccount(entity.get()));
 	}
 
 	@Override
-	public void perisitAccount(Account account) {
+	public Account perisitAccount(Account account) {
 		AccountEntity entity = MapperUtilClass.AccountToEntity(account);
 		accountRepo.save(entity);
+		return MapperUtilClass.EntityToAccount(entity);
 	}
-	
-	
-	
+
 }
