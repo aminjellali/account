@@ -15,7 +15,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.annotation.Description;
 
-import com.bank.account.application.persistence.AccountEntityRepository;
 import com.bank.account.core.exceptions.AccountNotFoundException;
 import com.bank.account.core.exceptions.OperationDeniedException;
 import com.bank.account.core.models.Account;
@@ -24,6 +23,7 @@ import com.bank.account.core.models.OperationTypeEnum;
 import com.bank.account.core.ports.buisness.ManageAccount;
 import com.bank.account.core.ports.buisness.ManageAccountImpl;
 import com.bank.account.core.ports.persistence.AccountPersistancePort;
+import com.bank.account.persistance_adapter.AccountEntityRepository;
 
 @ExtendWith(MockitoExtension.class)
 public class ManageAccountTest {

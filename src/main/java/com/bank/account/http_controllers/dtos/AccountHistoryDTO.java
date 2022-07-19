@@ -1,4 +1,4 @@
-package com.bank.account.controllers.dtos;
+package com.bank.account.http_controllers.dtos;
 
 import java.util.List;
 

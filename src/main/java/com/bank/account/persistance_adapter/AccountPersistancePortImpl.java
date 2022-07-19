@@ -1,4 +1,4 @@
-package com.bank.account.application.persistence;
+package com.bank.account.persistance_adapter;
 
 import java.util.Optional;
 
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.bank.account.core.models.Account;
 import com.bank.account.core.ports.persistence.AccountPersistancePort;
-import com.bank.account.dto.MapperUtilClass;
+import com.bank.account.dto_utils.MapperUtilClass;
 
 @Service
 public class AccountPersistancePortImpl implements AccountPersistancePort {

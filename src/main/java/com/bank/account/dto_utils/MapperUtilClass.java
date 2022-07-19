@@ -1,15 +1,15 @@
-package com.bank.account.dto;
+package com.bank.account.dto_utils;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.bank.account.application.persistence.AccountEntity;
-import com.bank.account.application.persistence.OperationEntity;
-import com.bank.account.controllers.dtos.AccountHistoryDTO;
-import com.bank.account.controllers.dtos.OperationDto;
 import com.bank.account.core.models.Account;
 import com.bank.account.core.models.Operation;
 import com.bank.account.core.ports.buisness.AccountHistory;
+import com.bank.account.http_controllers.dtos.AccountHistoryDTO;
+import com.bank.account.http_controllers.dtos.OperationDto;
+import com.bank.account.persistance_adapter.AccountEntity;
+import com.bank.account.persistance_adapter.OperationEntity;
 
 public class MapperUtilClass {
 	public static AccountEntity AccountToEntity(Account account) {
