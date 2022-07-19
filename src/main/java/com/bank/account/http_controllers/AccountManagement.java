@@ -1,4 +1,4 @@
-package com.bank.account.controllers;
+package com.bank.account.http_controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bank.account.core.exceptions.AccountNotFoundException;
 import com.bank.account.core.exceptions.OperationDeniedException;
 import com.bank.account.core.ports.buisness.ManageAccount;
-import com.bank.account.dto.MapperUtilClass;
+import com.bank.account.dto_utils.MapperUtilClass;
 
 @RestController
 @RequestMapping("/api/account")

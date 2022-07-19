@@ -12,24 +12,31 @@ import com.bank.account.core.models.Account;
  */
 public interface ManageAccount {
 	/**
-	 * Allows you to deposit money to a provided account.
+	 * Allows user to deposit money to a provided account and update linked
+	 * operations.
 	 * 
 	 * @param accountId the account to modify.
-	 * @param ammount   the ammount to add to the account
-	 * @throws OperationDeniedException          when ammount is null or values is negative
+	 * @param amount    the amount to add to the account
+	 * @throws OperationDeniedException when ammount is null or values is negative
 	 *                                  or zero.
-	 * @throws AccountNotFoundException when the provided account wasn't found.
+	 * @throws AccountNotFoundException when the provided account wasn't found in
+	 *                                  the persistence layer.
 	 */
-	Account depositMoneyToAccount(int accountId, Double ammount) throws OperationDeniedException, AccountNotFoundException;
+	Account depositMoneyToAccount(int accountId, Double amount)
+			throws OperationDeniedException, AccountNotFoundException;
 
 	/**
+	 * Allows user to withdraw money and update operations on a given account.
 	 * 
-	 * @param accountId
-	 * @param ammount
-	 * @throws OperationDeniedException
-	 * @throws AccountNotFoundException
+	 * @param accountId the account id to withdraw money from.
+	 * @param amount    the value to withdraw from account (not null and not
+	 *                  negative)
+	 * @throws OperationDeniedException in case amount is null or less or equal to
+	 *                                  zero, or larger then balance.
+	 * @throws AccountNotFoundException in case account not found.
 	 */
-	Account withdrawMoneyMoneyToAccount(int accountId, Double ammount) throws OperationDeniedException, AccountNotFoundException;
+	Account withdrawMoneyMoneyToAccount(int accountId, Double amount)
+			throws OperationDeniedException, AccountNotFoundException;
 
 	/**
 	 * Init an account with 0 amount and save it.
@@ -38,7 +45,14 @@ public interface ManageAccount {
 	 * @return
 	 */
 	void intAccount(String userName);
-	
+
+	/**
+	 * Retreive account history information.
+	 * 
+	 * @param id
+	 * @return
+	 * @throws AccountNotFoundException
+	 */
 	AccountHistory getHistory(Integer id) throws AccountNotFoundException;
 
 }

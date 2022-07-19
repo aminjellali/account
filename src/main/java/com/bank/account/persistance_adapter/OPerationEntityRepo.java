@@ -1,4 +1,4 @@
-package com.bank.account.application.persistence;
+package com.bank.account.persistance_adapter;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
