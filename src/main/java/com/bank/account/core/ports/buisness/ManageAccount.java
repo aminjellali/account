@@ -1,7 +1,8 @@
 package com.bank.account.core.ports.buisness;
 
 import com.bank.account.core.exceptions.AccountNotFoundException;
-import com.bank.account.core.exceptions.OperationDenied;
+import com.bank.account.core.exceptions.OperationDeniedException;
+import com.bank.account.core.models.Account;
 
 /**
  * An port interface used to interact with an account object.
@@ -15,20 +16,20 @@ public interface ManageAccount {
 	 * 
 	 * @param accountId the account to modify.
 	 * @param ammount   the ammount to add to the account
-	 * @throws OperationDenied          when ammount is null or values is negative
+	 * @throws OperationDeniedException          when ammount is null or values is negative
 	 *                                  or zero.
 	 * @throws AccountNotFoundException when the provided account wasn't found.
 	 */
-	void depositMoneyToAccount(int accountId, Double ammount) throws OperationDenied, AccountNotFoundException;
+	Account depositMoneyToAccount(int accountId, Double ammount) throws OperationDeniedException, AccountNotFoundException;
 
 	/**
 	 * 
 	 * @param accountId
 	 * @param ammount
-	 * @throws OperationDenied
+	 * @throws OperationDeniedException
 	 * @throws AccountNotFoundException
 	 */
-	void withdrawMoneyMoneyToAccount(int accountId, Double ammount) throws OperationDenied, AccountNotFoundException;
+	Account withdrawMoneyMoneyToAccount(int accountId, Double ammount) throws OperationDeniedException, AccountNotFoundException;
 
 	/**
 	 * Init an account with 0 amount and save it.

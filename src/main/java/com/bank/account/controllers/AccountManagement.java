@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bank.account.core.exceptions.AccountNotFoundException;
-import com.bank.account.core.exceptions.OperationDenied;
+import com.bank.account.core.exceptions.OperationDeniedException;
 import com.bank.account.core.ports.buisness.ManageAccount;
 import com.bank.account.dto.MapperUtilClass;
 
@@ -34,7 +34,7 @@ public class AccountManagement {
 			return ResponseEntity.ok("Account deposit success.");
 		} catch (AccountNotFoundException e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
-		} catch (OperationDenied e) {
+		} catch (OperationDeniedException e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		} catch (Exception e) {
 			return ResponseEntity.internalServerError().body(e.getMessage());
@@ -48,7 +48,7 @@ public class AccountManagement {
 			return ResponseEntity.ok("Account withdraw success.");
 		} catch (AccountNotFoundException e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
-		} catch (OperationDenied e) {
+		} catch (OperationDeniedException e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		} catch (Exception e) {
 			return ResponseEntity.internalServerError().body(e.getMessage());
