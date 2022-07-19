@@ -31,3 +31,9 @@ A candidate for my trading bot project don't hesitate to contact me if you wanna
 - mysql db (password not secured change app properties.)
 - java 11
 - spring 2.7.1
+
+# Requests for testing
+- POST http://localhost:8080/api/account/init?userName=amine
+- POST http://localhost:8080/api/account/deposit-money-to-account?accountId=1&amount=100
+- POST http://localhost:8080/api/account/withdraw-money-from-account?accountId=1&amount=100
+- GET http://localhost:8080/api/account/get-account-history?accountId=1
